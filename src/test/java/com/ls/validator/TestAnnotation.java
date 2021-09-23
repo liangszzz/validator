@@ -1,15 +1,16 @@
 package com.ls.validator;
 
 import com.ls.validator.annotations.Min;
+import com.ls.validator.message.Messages;
 import lombok.Getter;
 import lombok.Setter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
-
-public class TestAnnotation {
+class TestAnnotation {
 
     @Getter
     @Setter
@@ -17,13 +18,13 @@ public class TestAnnotation {
 
         private String name;
 
-        @Min(18)
+        @Min(value = 19)
         private Integer age;
 
-        @Min(18)
+        @Min(value = 19, message = "age2 not less than 17 xxx")
         private Long age2;
 
-        @Min(18)
+        @Min(value = 19, message = "demo.errAge", key = true)
         private String errAge;
 
         @Min(18)
@@ -32,7 +33,7 @@ public class TestAnnotation {
 
 
     @Test
-    public void test() {
+    void test() throws IllegalAccessException {
 
         Demo demo = new Demo();
         demo.setName("aa");
@@ -41,8 +42,10 @@ public class TestAnnotation {
         demo.setErrAge("18");
         demo.setErrAge2("18a");
 
-        List<String> validator = Validator.validator(demo);
-        Assertions.assertNotNull(validator);
+        Messages messages = new Messages("message", null, new String[]{"en", "zh"});
+        Validator validator = new Validator(false, messages);
+        Set<String> validate = validator.validate(demo);
+        Assertions.assertNotNull(validate);
     }
 
 

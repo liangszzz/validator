@@ -8,6 +8,4 @@ import java.lang.annotation.*;
 public @interface Validate {
 
     String clazz();
-
-    String method();
 }
