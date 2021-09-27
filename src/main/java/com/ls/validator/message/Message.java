@@ -19,6 +19,8 @@ public class Message {
 
     private String field;
 
+    private String description;
+
     public String parseMsg() {
         return msg.replace("${field}", field).replace("${value}", value);
     }
