@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 import java.lang.annotation.Annotation;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class MinValidatorTest {
 
     private MinValidator minValidator;
