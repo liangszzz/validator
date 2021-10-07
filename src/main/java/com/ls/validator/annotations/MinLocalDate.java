@@ -5,19 +5,23 @@ import java.lang.annotation.*;
 /**
  * input value must be >= setting
  * apply to String value
- * apply to Date value
+ * apply to LocalDate value
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-@Validate(clazz = "com.ls.validator.validators.impl.MinValidator")
-public @interface Min {
+@Validate(clazz = "com.ls.validator.validators.impl.MinLocalDateValidator")
+public @interface MinLocalDate {
 
-    double value() default 0d;
+    String value();
 
     String message() default "${field} must be greater than or equal to ${value}";
 
-    String language() default "";
+    String language();
 
     boolean key() default false;
+
+    boolean now() default false;
+
+    String format() default "yyyy-MM-dd";
 }

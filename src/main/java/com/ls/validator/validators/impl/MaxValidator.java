@@ -2,7 +2,7 @@ package com.ls.validator.validators.impl;
 
 import com.ls.validator.annotations.Max;
 import com.ls.validator.message.Message;
-import com.ls.validator.validators.AbstractValidator;
+import com.ls.validator.validators.abs.DefaultAbstractValidator;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Slf4j
 @NoArgsConstructor
-public class MaxValidator extends AbstractValidator {
+public class MaxValidator extends DefaultAbstractValidator {
 
     @Override
     public Optional<Message> apply(Object value, Annotation annotation) {

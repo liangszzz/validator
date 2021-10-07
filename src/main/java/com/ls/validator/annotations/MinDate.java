@@ -2,12 +2,15 @@ package com.ls.validator.annotations;
 
 import java.lang.annotation.*;
 
-
+/**
+ * input value must be >= setting
+ * apply to any value which can parse with Double.parseDouble(value.toString())
+ */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-@Validate(clazz = "com.ls.validator.validators.impl.MinDateTimeValidator")
-public @interface MinDateTime {
+@Validate(clazz = "com.ls.validator.validators.impl.MinDateValidator")
+public @interface MinDate {
 
     String value();
 
@@ -17,5 +20,7 @@ public @interface MinDateTime {
 
     boolean key() default false;
 
-    boolean minIsNow() default true;
+    boolean now() default false;
+
+    String format() default "yyyy-MM-dd HH:mm:ss";
 }

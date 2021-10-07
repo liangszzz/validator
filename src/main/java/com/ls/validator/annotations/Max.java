@@ -2,6 +2,10 @@ package com.ls.validator.annotations;
 
 import java.lang.annotation.*;
 
+/**
+ * input value must be < setting
+ * apply to any value which can parse with Double.parseDouble(value.toString())
+ */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
