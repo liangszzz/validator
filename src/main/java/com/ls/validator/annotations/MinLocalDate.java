@@ -17,7 +17,7 @@ public @interface MinLocalDate {
 
     String message() default "${field} must be greater than or equal to ${value}";
 
-    String language();
+    String language() default "";
 
     boolean key() default false;
 

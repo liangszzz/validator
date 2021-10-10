@@ -9,6 +9,7 @@ import java.lang.annotation.Annotation;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 public class MaxLocalDateValidator extends DateTimeAbstractValidator {
@@ -47,7 +48,7 @@ public class MaxLocalDateValidator extends DateTimeAbstractValidator {
                 inputDate = v;
             }
 
-            if (inputDate != null && settingDate.isAfter(inputDate)) {
+            if (inputDate != null && (settingDate.isAfter(inputDate) || settingDate.isEqual(inputDate))) {
                 return Optional.empty();
             } else {
 
@@ -61,5 +62,12 @@ public class MaxLocalDateValidator extends DateTimeAbstractValidator {
         }
 
         throw new IllegalArgumentException();
+    }
+
+    @Override
+    public Set<Class<?>> supportedTypes() {
+        Set<Class<?>> set = super.supportedTypes();
+        set.add(LocalDate.class);
+        return set;
     }
 }

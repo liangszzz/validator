@@ -3,7 +3,7 @@ package com.ls.validator.annotations;
 import java.lang.annotation.*;
 
 /**
- * input value must be < setting
+ * input value must be <= setting
  * apply to any value which can parse with Double.parseDouble(value.toString())
  */
 @Documented
@@ -16,7 +16,7 @@ public @interface Max {
 
     String message() default "${field} must be less than or equal to ${value}";
 
-    String language();
+    String language() default "";
 
     boolean key() default false;
 }

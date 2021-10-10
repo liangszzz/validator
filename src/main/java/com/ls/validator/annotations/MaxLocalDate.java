@@ -3,7 +3,7 @@ package com.ls.validator.annotations;
 import java.lang.annotation.*;
 
 /**
- * input value must be < setting
+ * input value must be <= setting
  * apply to String value
  * apply to LocalDate value
  */
@@ -17,7 +17,7 @@ public @interface MaxLocalDate {
 
     String message() default "${field} must be less than ${value}";
 
-    String language();
+    String language() default "";
 
     boolean key() default false;
 

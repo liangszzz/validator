@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.lang.annotation.Annotation;
 import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 @NoArgsConstructor
@@ -34,5 +35,17 @@ public class MinValidator extends DefaultAbstractValidator {
             return Optional.of(message);
         }
         throw new IllegalArgumentException();
+    }
+
+    @Override
+    public Set<Class<?>> supportedTypes() {
+        Set<Class<?>> set = super.supportedTypes();
+        set.add(Byte.class);
+        set.add(Short.class);
+        set.add(Integer.class);
+        set.add(Long.class);
+        set.add(Float.class);
+        set.add(Double.class);
+        return set;
     }
 }

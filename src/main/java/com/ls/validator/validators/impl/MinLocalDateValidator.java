@@ -9,6 +9,7 @@ import java.lang.annotation.Annotation;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 public class MinLocalDateValidator extends DateTimeAbstractValidator {
@@ -63,5 +64,12 @@ public class MinLocalDateValidator extends DateTimeAbstractValidator {
 
 
         return Optional.empty();
+    }
+
+    @Override
+    public Set<Class<?>> supportedTypes() {
+        Set<Class<?>> set = super.supportedTypes();
+        set.add(LocalDate.class);
+        return set;
     }
 }

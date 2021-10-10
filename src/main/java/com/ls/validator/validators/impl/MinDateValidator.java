@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 public class MinDateValidator extends DateTimeAbstractValidator {
@@ -59,5 +60,12 @@ public class MinDateValidator extends DateTimeAbstractValidator {
                     .build());
         }
         throw new IllegalArgumentException();
+    }
+
+    @Override
+    public Set<Class<?>> supportedTypes() {
+        Set<Class<?>> set = super.supportedTypes();
+        set.add(Date.class);
+        return set;
     }
 }

@@ -9,7 +9,9 @@ import java.lang.annotation.Annotation;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 public class MaxDateValidator extends DateTimeAbstractValidator {
@@ -44,7 +46,7 @@ public class MaxDateValidator extends DateTimeAbstractValidator {
                 inputDate = v;
             }
 
-            if (settingDate.after(inputDate)) {
+            if (settingDate.compareTo(inputDate) >= 0) {
                 return Optional.empty();
             }
 
@@ -56,5 +58,12 @@ public class MaxDateValidator extends DateTimeAbstractValidator {
                     .build());
         }
         throw new IllegalArgumentException();
+    }
+
+    @Override
+    public Set<Class<?>> supportedTypes() {
+        Set<Class<?>> set = super.supportedTypes();
+        set.add(Date.class);
+        return set;
     }
 }

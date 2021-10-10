@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.lang.annotation.Annotation;
 import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 @NoArgsConstructor
@@ -19,7 +20,7 @@ public class MaxValidator extends DefaultAbstractValidator {
             double v;
             try {
                 v = Double.parseDouble(value.toString());
-                if (v < max.value()) {
+                if (v <= max.value()) {
                     return Optional.empty();
                 }
             } catch (NumberFormatException e) {
@@ -37,4 +38,15 @@ public class MaxValidator extends DefaultAbstractValidator {
         throw new IllegalArgumentException();
     }
 
+    @Override
+    public Set<Class<?>> supportedTypes() {
+        Set<Class<?>> set = super.supportedTypes();
+        set.add(Byte.class);
+        set.add(Short.class);
+        set.add(Integer.class);
+        set.add(Long.class);
+        set.add(Float.class);
+        set.add(Double.class);
+        return set;
+    }
 }
